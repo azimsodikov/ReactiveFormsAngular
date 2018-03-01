@@ -1,0 +1,10 @@
+<div class="app">
+  <dynamic-form
+    *ngIf="config"
+    [config]="config"
+    #forms="dynamicForm"
+    (submit)="submit($event)">
+  </dynamic-form>
+  {{ form?.valid }}
+  {{ form?.value | json }}
+</div>
