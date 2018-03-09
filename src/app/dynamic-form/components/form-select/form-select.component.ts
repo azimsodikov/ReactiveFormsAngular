@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { Field } from '../../models/field.interface';

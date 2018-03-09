@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 import { async } from '@angular/core/testing';
 import { FielConfigService } from './field-config.service';
-import { Component, ViewChild, AfterViewInit, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Validators } from '@angular/forms';
 
 import { FieldConfig } from './dynamic-form/models/field-config.interface';
@@ -12,7 +12,7 @@ import { DynamicFormComponent } from './dynamic-form/containers/dynamic-form/dyn
   styleUrls: ['app.component.scss'],
   templateUrl: 'app.component.html' 
 })
-export class AppComponent implements AfterViewInit, OnInit {
+export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild(DynamicFormComponent) forms: DynamicFormComponent;
   private form: DynamicFormComponent;
 
@@ -52,6 +52,9 @@ export class AppComponent implements AfterViewInit, OnInit {
     });
 
 
+  }
+  ngOnDestroy(){
+    this.subject.unsubscribe();
   }
 
   submit(value: {[name: string]: any}) {

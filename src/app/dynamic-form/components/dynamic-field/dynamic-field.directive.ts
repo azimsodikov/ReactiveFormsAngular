@@ -1,4 +1,14 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
+import { ComponentFactoryResolver, 
+          ComponentRef, 
+          Directive, 
+          Input, 
+          OnChanges, 
+          OnInit, 
+          Type, 
+          ViewContainerRef, 
+          ViewChild, 
+          ElementRef } from '@angular/core';
+
 import { FormGroup } from '@angular/forms';
 
 import { FormButtonComponent } from '../form-button/form-button.component';
@@ -40,10 +50,11 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
       this.component.instance.group = this.group;
     }
   }
-
+  
   ngOnInit() {
     if (!components[this.config.type]) {
       const supportedTypes = Object.keys(components).join(', ');
+      
       throw new Error(
         `Trying to use an unsupported type (${this.config.type}).
         Supported types: ${supportedTypes}`
@@ -53,5 +64,6 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
     this.component = this.container.createComponent(component);
     this.component.instance.config = this.config;
     this.component.instance.group = this.group;
+    console.log('this.compoenent', this.component.instance);
   }
 }
